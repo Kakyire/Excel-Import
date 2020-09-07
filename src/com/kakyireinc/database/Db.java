@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package databases;
+package com.kakyireinc.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -26,11 +27,10 @@ public class Db {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-//            connection=DriverManager.getConnection(URL);
             connection = DriverManager.getConnection(URL+TIME, USER, PASSWORD);
             System.out.println("Successfully connected");
            
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
 
         }

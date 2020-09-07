@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package classes;
+package com.kakyireinc.classes;
 
-import databases.Db;
+import com.kakyireinc.database.Db;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
