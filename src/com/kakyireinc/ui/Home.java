@@ -5,12 +5,11 @@
  */
 package com.kakyireinc.ui;
 
-import com.kakyireinc.database.Db;
+import static com.kakyireinc.database.Db.dbConnection;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
@@ -18,6 +17,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -35,7 +35,6 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
-        con = new Db().dbConnection();
     }
 
     /**
@@ -129,7 +128,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 
-    private static Connection con = null;
     private Statement stmt;
 
     /*
@@ -248,8 +246,9 @@ public class Home extends javax.swing.JFrame {
             try {
                 String sql = "insert into users (name,gender) "
                         + "values ('" + name + "','" + gender + "')";
-                stmt = con.createStatement();
+                stmt = dbConnection().createStatement();
                 stmt.execute(sql);
+                JOptionPane.showMessageDialog(this, "Import was successful");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
